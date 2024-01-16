@@ -19,7 +19,7 @@ jobs:
   Prepare-ICD-RxJS:
     name: Prepare-ICD-RxJS
     runs-on: self-hosted
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - name: Checkout ICD-RxJS repository
         uses: actions/checkout@v4

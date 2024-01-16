@@ -36,6 +36,6 @@ jobs:
           cd protobuf
           ./build_proto.sh
           cd ../src/test
-          npm test IMAGE_FITTING_*
+          npm test *
           echo $GITHUB_WORKSPACE
           echo End Prepare ICD-RxJS!

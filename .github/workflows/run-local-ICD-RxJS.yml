@@ -29,7 +29,6 @@ jobs:
           path: ICD-RxJS
       
       - name: Prepare ICD-RxJS (macOS)
-        if: matrix.os == 'macos'
         run: |
           ICD_DIR=$GITHUB_WORKSPACE/ICD-RxJS
           cd $ICD_DIR

@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+name: ICD tests
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "dev" branch
+  push:
+    branches: [ "dev" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  ICD_RXJS_BRANCH_NAME: dev
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "Prepare-ICD-RxJS"
+  Prepare-ICD-RxJS:
+    name: Prepare-ICD-RxJS
+    runs-on: self-hosted
+    timeout-minutes: 5
+    steps:
+      - name: Checkout ICD-RxJS repository
+        uses: actions/checkout@v4
+        with:
+          repository: CARTAvis/ICD-RxJS
+          ref: ${{ env.ICD_RXJS_BRANCH_NAME }}
+          path: ICD-RxJS
+      
+      - name: Prepare ICD-RxJS (macOS)
+        if: matrix.os == 'macos'
+        run: |
+          ICD_DIR=$GITHUB_WORKSPACE/ICD-RxJS
+          cd $ICD_DIR
+          git submodule init && git submodule update && npm install
+          cd protobuf
+          ./build_proto.sh
+          cd ../src/test
+          echo $GITHUB_WORKSPACE
+          echo End Prepare ICD-RxJS!

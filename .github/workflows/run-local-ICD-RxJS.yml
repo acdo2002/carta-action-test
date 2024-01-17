@@ -17,7 +17,7 @@ env:
 jobs:
   # This workflow contains a single job called "Prepare-ICD-RxJS"
   Prepare-ICD-RxJS:
-    name: Prepare-ICD-RxJS
+    name: Running-ICD-RxJS
     runs-on: self-hosted
     timeout-minutes: 20
     steps:
@@ -28,7 +28,7 @@ jobs:
           ref: ${{ env.ICD_RXJS_BRANCH_NAME }}
           path: ICD-RxJS
       
-      - name: Prepare ICD-RxJS (macOS)
+      - name: Running ICD-RxJS (macOS)
         run: |
           ICD_DIR=$GITHUB_WORKSPACE/ICD-RxJS
           cd $ICD_DIR
